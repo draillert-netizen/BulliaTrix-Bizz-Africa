@@ -1,0 +1,149 @@
+'use client';
+
+import { useState } from 'react';
+
+export default function Home() {
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setEmail('');
+    setTimeout(() => setSubmitted(false), 3000);
+  };
+
+  return (
+    <main className="min-h-screen bg-gradient-to-b from-background via-background to-background">
+      {/* Navigation */}
+      <nav className="border-b border-muted/20 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center">
+              <span className="text-white font-bold">BT</span>
+            </div>
+            <span className="font-bold text-lg">BulliaTrix</span>
+          </div>
+          <div className="flex gap-6 text-sm">
+            <a href="#features" className="hover:text-primary transition">Features</a>
+            <a href="#about" className="hover:text-primary transition">About</a>
+            <a href="#contact" className="hover:text-primary transition">Contact</a>
+          </div>
+        </div>
+      </nav>
+
+      {/* Hero Section */}
+      <section className="max-w-6xl mx-auto px-4 py-20 md:py-32 text-center">
+        <div className="space-y-6">
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+            Empowering African
+            <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              Businesses
+            </span>
+          </h1>
+          <p className="text-xl text-muted max-w-2xl mx-auto leading-relaxed">
+            BulliaTrix-Bizz-Africa brings cutting-edge digital solutions to help businesses across Africa scale, grow, and succeed in the digital economy.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
+            <button className="px-8 py-3 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-primary/50 transition">
+              Get Started
+            </button>
+            <button className="px-8 py-3 border border-primary text-primary font-semibold rounded-lg hover:bg-primary/10 transition">
+              Learn More
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="max-w-6xl mx-auto px-4 py-20">
+        <h2 className="text-4xl font-bold text-center mb-16">Why Choose Us</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              icon: '🚀',
+              title: 'Lightning Fast',
+              description: 'Optimize your business with high-performance digital infrastructure.',
+            },
+            {
+              icon: '🌍',
+              title: 'Global Reach',
+              description: 'Connect with customers across Africa and beyond with our platform.',
+            },
+            {
+              icon: '🔒',
+              title: 'Secure & Reliable',
+              description: 'Enterprise-grade security to protect your business data.',
+            },
+          ].map((feature, idx) => (
+            <div
+              key={idx}
+              className="p-8 rounded-xl border border-muted/30 bg-muted/5 hover:bg-muted/10 transition hover:border-primary/50"
+            >
+              <div className="text-5xl mb-4">{feature.icon}</div>
+              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+              <p className="text-muted">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section id="about" className="max-w-6xl mx-auto px-4 py-20">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="space-y-6">
+            <h2 className="text-4xl font-bold">About BulliaTrix</h2>
+            <p className="text-muted leading-relaxed">
+              We&apos;re dedicated to transforming how African businesses operate in the digital world. Our platform combines innovative technology with deep market understanding to deliver solutions that actually work.
+            </p>
+            <ul className="space-y-3 text-muted">
+              {['Founded with a mission', 'Trusted by 1000+ businesses', 'Continuous innovation'].map((item, idx) => (
+                <li key={idx} className="flex items-center gap-3">
+                  <span className="w-2 h-2 bg-primary rounded-full" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl p-8 border border-muted/20 h-64 flex items-center justify-center">
+            <p className="text-center text-muted">Product showcase coming soon</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Newsletter Section */}
+      <section id="contact" className="max-w-2xl mx-auto px-4 py-20">
+        <div className="bg-gradient-to-r from-primary/10 to-accent/10 border border-muted/30 rounded-xl p-12 text-center">
+          <h2 className="text-3xl font-bold mb-4">Stay Updated</h2>
+          <p className="text-muted mb-8">Get the latest updates about our new features and services.</p>
+          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Enter your email"
+              required
+              className="flex-1 px-4 py-3 bg-background border border-muted/30 rounded-lg focus:outline-none focus:border-primary transition text-foreground"
+            />
+            <button
+              type="submit"
+              className="px-8 py-3 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-primary/50 transition whitespace-nowrap"
+            >
+              Subscribe
+            </button>
+          </form>
+          {submitted && (
+            <p className="text-primary text-sm mt-4">Thanks for subscribing!</p>
+          )}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-muted/20 bg-muted/5 py-8 mt-20">
+        <div className="max-w-6xl mx-auto px-4 text-center text-muted">
+          <p>&copy; 2026 BulliaTrix-Bizz-Africa. All rights reserved.</p>
+        </div>
+      </footer>
+    </main>
+  );
+}
