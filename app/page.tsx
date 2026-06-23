@@ -5,6 +5,7 @@ import { useState } from 'react';
 export default function Home() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [activeTab, setActiveTab] = useState<'starter' | 'professional' | 'enterprise'>('professional');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,6 +27,8 @@ export default function Home() {
           </div>
           <div className="flex gap-6 text-sm">
             <a href="#features" className="hover:text-primary transition">Features</a>
+            <a href="#testimonials" className="hover:text-primary transition">Testimonials</a>
+            <a href="#pricing" className="hover:text-primary transition">Pricing</a>
             <a href="#about" className="hover:text-primary transition">About</a>
             <a href="#contact" className="hover:text-primary transition">Contact</a>
           </div>
@@ -111,6 +114,117 @@ export default function Home() {
           <div className="bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl p-8 border border-muted/20 h-64 flex items-center justify-center">
             <p className="text-center text-muted">Product showcase coming soon</p>
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="max-w-6xl mx-auto px-4 py-20">
+        <h2 className="text-4xl font-bold text-center mb-16">What Our Clients Say</h2>
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              name: 'Amara Okonkwo',
+              role: 'CEO, TechHub Lagos',
+              text: 'BulliaTrix transformed how we manage our operations. The results have been incredible.',
+            },
+            {
+              name: 'Kofi Mensah',
+              role: 'Founder, E-Commerce Plus',
+              text: 'Amazing support and features. They truly understand African market needs.',
+            },
+            {
+              name: 'Zainab Hassan',
+              role: 'Director, Digital Solutions',
+              text: 'The platform is intuitive and has helped us scale 3x in just one year.',
+            },
+          ].map((testimonial, idx) => (
+            <div
+              key={idx}
+              className="p-8 rounded-xl border border-muted/30 bg-muted/5 hover:border-primary/50 transition"
+            >
+              <div className="flex gap-1 mb-4">
+                {[...Array(5)].map((_, i) => (
+                  <span key={i} className="text-accent text-lg">★</span>
+                ))}
+              </div>
+              <p className="text-muted mb-6 leading-relaxed">"{testimonial.text}"</p>
+              <div>
+                <p className="font-semibold">{testimonial.name}</p>
+                <p className="text-sm text-muted">{testimonial.role}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Pricing Section */}
+      <section id="pricing" className="max-w-6xl mx-auto px-4 py-20">
+        <h2 className="text-4xl font-bold text-center mb-4">Simple, Transparent Pricing</h2>
+        <p className="text-center text-muted mb-16 max-w-2xl mx-auto">Choose the plan that fits your business needs. All plans include 14-day free trial.</p>
+        
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              id: 'starter',
+              name: 'Starter',
+              price: '$29',
+              description: 'Perfect for small businesses',
+              features: ['Up to 5 users', '10 GB storage', 'Email support', 'Basic analytics'],
+            },
+            {
+              id: 'professional',
+              name: 'Professional',
+              price: '$99',
+              description: 'Best for growing companies',
+              features: ['Up to 50 users', '500 GB storage', 'Priority support', 'Advanced analytics', 'Custom integrations', 'API access'],
+              popular: true,
+            },
+            {
+              id: 'enterprise',
+              name: 'Enterprise',
+              price: 'Custom',
+              description: 'For large organizations',
+              features: ['Unlimited users', 'Unlimited storage', '24/7 dedicated support', 'Custom features', 'SLA guarantee', 'On-premise option'],
+            },
+          ].map((plan: any) => (
+            <div
+              key={plan.id}
+              className={`rounded-xl border transition p-8 ${
+                plan.popular
+                  ? 'border-primary bg-gradient-to-b from-primary/10 to-transparent scale-105'
+                  : 'border-muted/30 bg-muted/5 hover:border-primary/50'
+              }`}
+            >
+              {plan.popular && (
+                <div className="inline-block px-3 py-1 bg-gradient-to-r from-primary to-accent text-white text-xs font-semibold rounded-full mb-4">
+                  Most Popular
+                </div>
+              )}
+              <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
+              <p className="text-muted mb-4">{plan.description}</p>
+              <div className="mb-6">
+                <span className="text-4xl font-bold">{plan.price}</span>
+                {plan.price !== 'Custom' && <span className="text-muted">/month</span>}
+              </div>
+              <button
+                className={`w-full py-3 rounded-lg font-semibold transition mb-8 ${
+                  plan.popular
+                    ? 'bg-gradient-to-r from-primary to-accent text-white hover:shadow-lg hover:shadow-primary/40'
+                    : 'border border-primary text-white hover:bg-primary/10'
+                }`}
+              >
+                {plan.price === 'Custom' ? 'Contact Sales' : 'Start Free Trial'}
+              </button>
+              <ul className="space-y-3">
+                {plan.features.map((feature: string, fidx: number) => (
+                  <li key={fidx} className="flex items-center gap-2 text-sm">
+                    <span className="w-1.5 h-1.5 bg-primary rounded-full" />
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </section>
 
