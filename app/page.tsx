@@ -33,23 +33,26 @@ export default function Home() {
       </nav>
 
       {/* Hero Section */}
-      <section className="max-w-6xl mx-auto px-4 py-20 md:py-32 text-center">
-        <div className="space-y-6">
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+      <section className="max-w-6xl mx-auto px-4 py-20 md:py-40 text-center">
+        <div className="space-y-8 mb-12">
+          <div className="inline-block px-4 py-2 bg-primary/10 rounded-full text-primary text-sm font-semibold mb-4">
+            ✨ Transforming African Commerce
+          </div>
+          <h1 className="text-6xl md:text-8xl font-bold tracking-tight leading-tight">
             Empowering African
-            <span className="block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent animate-pulse">
               Businesses
             </span>
           </h1>
-          <p className="text-xl text-muted max-w-2xl mx-auto leading-relaxed">
-            BulliaTrix-Bizz-Africa brings cutting-edge digital solutions to help businesses across Africa scale, grow, and succeed in the digital economy.
+          <p className="text-lg md:text-xl text-muted max-w-2xl mx-auto leading-relaxed">
+            BulliaTrix-Bizz-Africa delivers cutting-edge digital solutions to help businesses across Africa scale, grow, and thrive in the digital economy.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-8">
-            <button className="px-8 py-3 bg-gradient-to-r from-primary to-accent text-white font-semibold rounded-lg hover:shadow-lg hover:shadow-primary/50 transition">
-              Get Started
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-12">
+            <button className="px-8 py-4 bg-gradient-to-r from-primary to-accent text-white font-bold rounded-lg hover:shadow-2xl hover:shadow-primary/40 transition-all duration-300 transform hover:scale-105 text-lg">
+              Get Started Free
             </button>
-            <button className="px-8 py-3 border border-primary text-primary font-semibold rounded-lg hover:bg-primary/10 transition">
-              Learn More
+            <button className="px-8 py-4 border-2 border-primary text-white font-bold rounded-lg hover:bg-primary/10 transition-all duration-300 text-lg">
+              Watch Demo
             </button>
           </div>
         </div>
